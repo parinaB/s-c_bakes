@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cake Dates | S&C Bakes</title>
+
+  <link rel="stylesheet" href="styles/style.css">
+  
+  <link rel="stylesheet" href="styles/cake.css">
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <div id="navbar"></div>
+
+  <script>
+    fetch('navbar.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('navbar').innerHTML = data;
+      });
+  </script>
+
+
+  <!-- HERO SECTION -->
+  <section class="cake-hero">
+    <h1>Cake Dates</h1>
+    <p>What says "We Get Along" Better Than A Cake</p>
+  </section>
+
+
+  
+  <!-- OPTIONS SECTION -->
+<section class="cake-options">
+  <h2>Choose Your Experience</h2>
+
+  <div class="options-grid">
+
+    <div class="option-card">
+      <img src="https://i.pinimg.com/1200x/82/6f/2f/826f2f20028814ae74217f22997b13a2.jpg" alt="">
+      <h3>Workshops</h3>
+      <p>Join our guided baking workshop!</p>
+      <a href="workshops.html" class="button">Explore Workshops</a>
+    </div>
+
+    <div class="option-card">
+      <img src="https://i.pinimg.com/1200x/3d/32/c0/3d32c01b8ad0a05bb3432ec38dc4d379.jpg" alt="">
+      <h3>Self-Fun</h3>
+      <p>Bake your own masterpiece!</p>
+      <a href="selffun.html" class="button">Start Your Fun</a>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- TESTIMONIALS SECTION -->
+<section class="testimonials">
+  <h2>They’ve Had Their Cake & Loved It!</h2>
+
+  <div class="testimonial-grid">
+    <img src="https://i.pinimg.com/736x/57/f5/6f/57f56f860ae9a0e3b3936f4d9612c2aa.jpg">
+    <img src="https://i.pinimg.com/1200x/cb/ee/82/cbee82fd4e8085f49af9b1e71fde863a.jpg">
+    <img src="https://i.pinimg.com/736x/1e/aa/0f/1eaa0f55e836c46310f0c67eed46584e.jpg">
+    <img src="https://i.pinimg.com/736x/a8/b7/c0/a8b7c04b3e1deeb08abf5b5af60bf791.jpg">
+  </div>
+</section>
+
+
+</body>
+</html>

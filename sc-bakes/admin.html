@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin - Export Data</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #fff3f3;
+      margin: 0;
+      padding: 20px;
+      min-height: 100vh;
+    }
+    .admin-container {
+      background-color: white;
+      padding: 40px;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    h1 {
+      color: #ff6b6b;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+    .section {
+      margin-bottom: 40px;
+      padding-bottom: 30px;
+      border-bottom: 2px solid #eee;
+    }
+    .section:last-child {
+      border-bottom: none;
+    }
+    .export-btn, .view-btn {
+      background-color: #ff6b6b;
+      color: white;
+      padding: 15px 30px;
+      border: none;
+      border-radius: 5px;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      margin: 10px;
+    }
+    .export-btn:hover, .view-btn:hover {
+      background-color: #ff4c4c;
+    }
+    .info {
+      margin-top: 20px;
+      color: #666;
+      font-size: 14px;
+    }
+    .feedback-display {
+      background-color: #f9f9f9;
+      padding: 20px;
+      border-radius: 8px;
+      margin-top: 20px;
+      max-height: 400px;
+      overflow-y: auto;
+      white-space: pre-wrap;
+      font-family: 'Courier New', monospace;
+      font-size: 13px;
+      text-align: left;
+      border: 1px solid #ddd;
+    }
+    .button-group {
+      text-align: center;
+    }
+    .file-path {
+      background-color: #e7e2dc;
+      padding: 10px;
+      border-radius: 5px;
+      margin-top: 10px;
+      font-family: 'Courier New', monospace;
+      font-size: 12px;
+      color: #4a2c2a;
+    }
+  </style>
+</head>
+<body>
+  <div class="admin-container">
+    <h1>Admin Dashboard</h1>
+    
+    <div class="section">
+      <h2>Orders & Bookings</h2>
+      <p>Export all orders, bookings, and checkouts to Excel</p>
+      <div class="button-group">
+        <button class="export-btn" onclick="exportData()">Download Excel Export</button>
+      </div>
+      <div class="info">
+        <p>The Excel file (.xlsx) can be opened in Excel, Numbers, or any spreadsheet application.</p>
+        <p>It includes all cart checkouts, workshop bookings, and self-fun bookings.</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Customer Feedback</h2>
+      <p>View all customer feedback submissions</p>
+      <div class="button-group">
+        <button class="view-btn" onclick="viewFeedbacks()">View Feedbacks</button>
+      </div>
+      <div class="file-path">
+        <strong>File Location:</strong> backend/feedbacks/feedbacks.txt
+      </div>
+      <div id="feedbackDisplay" class="feedback-display" style="display: none;"></div>
+    </div>
+  </div>
+
+  <script>
+    function exportData() {
+      window.location.href = 'http://localhost:5000/export-data';
+    }
+
+    async function viewFeedbacks() {
+      try {
+        const response = await fetch('http://localhost:5000/get-feedbacks');
+        const data = await response.json();
+        
+        const display = document.getElementById('feedbackDisplay');
+        if (data.text && data.text.trim()) {
+          display.textContent = data.text;
+          display.style.display = 'block';
+        } else {
+          display.textContent = 'No feedbacks submitted yet.';
+          display.style.display = 'block';
+        }
+      } catch (error) {
+        console.error('Error fetching feedbacks:', error);
+        document.getElementById('feedbackDisplay').textContent = 'Error loading feedbacks. Make sure the server is running.';
+        document.getElementById('feedbackDisplay').style.display = 'block';
+      }
+    }
+  </script>
+</body>
+</html>
+

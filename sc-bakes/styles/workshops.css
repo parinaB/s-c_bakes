@@ -1,0 +1,89 @@
+/* PAGE WRAPPER */
+.workshop-wrapper {
+  display: flex;
+  padding: 60px;
+  gap: 40px;
+  margin-left: 10vh;
+}
+
+/* LEFT SIDE IMAGE */
+.workshop-left img {
+  width: 450px;
+  height: 550px;
+  border-radius: 25px;
+  object-fit: cover;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.15);
+  margin-top:10vh;
+  
+}
+
+/* FORM SIDE */
+.workshop-right {
+  width: 500px;
+  background: white;
+  padding: 90px;
+  border-radius: 25px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.12);
+  
+}
+
+.workshop-right h2 {
+  margin-bottom: 15px;
+  font-size: 28px;
+  
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: px;
+}
+
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(0,0,0,0.2);
+  font-size: 15px;
+}
+
+.price-highlight {
+  background: rgb(211, 211, 238); /* light purple background */
+  padding: 5px;
+  border-radius: 15px;
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+  color: #b45f3c; /* matching your total price color */
+}
+
+.price-highlight h3 {
+  margin-top: 10px;
+  font-size: 28px;
+  color: #b45f3c;
+}
+
+
+.confirm-btn {
+  width: 100%;
+  padding: 14px;
+  background: #e29c96;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 18px;
+  margin-top: 10px;
+  letter-spacing: 0.5px;
+}
+
+.confirm-btn:hover {
+    background: #df8880;
+  
+}

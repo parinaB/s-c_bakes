@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Your Cart</title>
+  <link rel="stylesheet" href="styles/style.css">
+  <link rel="stylesheet" href="styles/cart.css">
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <div id="navbar"></div>
+
+  <script>
+    fetch('navbar.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('navbar').innerHTML = data;
+      });
+  </script>
+
+  <div class="cart-bill-container">
+    <h2>Your Bill</h2>
+    <table id="cart-table">
+      <thead>
+        <tr>
+          <th>Image</th>
+          <th>Item</th>
+          <th>Qty</th>
+          <th>Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- JS will populate this -->
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="3" style="text-align:right;">Total:</td>
+          <td id="total-sum">₹0</td>
+        </tr>
+      </tfoot>
+    </table>
+
+    <div class="cart-bill-buttons">
+    <button id="back-btn">Back</button>
+    <button id="checkout-btn">Checkout</button>
+  </div>
+
+  </div>
+
+  <script src="cart.js"></script>
+</body>
+</html>

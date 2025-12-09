@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Workshops • S&C Bakes</title>
+  <link rel="stylesheet" href="styles/style.css" />
+  <link rel="stylesheet" href="styles/workshops.css" />
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <div id="navbar"></div>
+
+  <script>
+    fetch('navbar.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('navbar').innerHTML = data;
+      });
+  </script>
+
+  <!-- WORKSHOP PAGE CONTENT -->
+  <section class="products">
+    <div class="workshop-wrapper">
+      
+      <!-- LEFT IMAGE -->
+      <div class="workshop-left">
+        <img src="https://i.pinimg.com/736x/fe/18/2c/fe182cdc62ebd3beab056313dcc1d33c.jpg" alt="workshop image">
+      </div>
+
+      <!-- RIGHT FORM -->
+      <div class="workshop-right">
+        <h2>Workshop Registration</h2>
+
+        <form id="workshopForm">
+          <div class="form-group">
+            <label for="wname">Your Name</label>
+            <input id="wname" type="text" placeholder="Full name" required>
+          </div>
+
+          <div class="form-group">
+            <label for="wdate">Choose Date</label>
+            <input id="wdate" type="date" required>
+          </div>
+
+          <div class="form-group">
+            <label for="wpeople">Number of People</label>
+            <input id="wpeople" type="number" min="1" max="10" value="1" required>
+          </div>
+
+          <div class="form-group">
+            <label for="wslot">Choose Slot</label>
+            <select id="wslot" required>
+              <option value="">-- select slot --</option>
+              <option>10:00 AM</option>
+              <option>12:00 PM</option>
+              <option>3:00 PM</option>
+              <option>5:00 PM</option>
+            </select>
+          </div>
+
+
+
+          <div class="price-highlight">
+      <p>Price per person: <span id="pricePerPerson">₹699</span></p>
+     <h3>Total: <span id="totalPrice">₹699</span></h3>
+    </div>
+
+          <button type="submit" class="confirm-btn">Confirm Booking</button>
+
+          <p id="wmsg" style="margin-top:14px;color:#4a2c2a;font-weight:700;"></p>
+        </form>
+      </div>
+
+    </div>
+  </section>
+
+  <footer>
+    <h3>S&C Bakes</h3>
+    <p>See you at the workshop!</p>
+  </footer>
+
+  <script src="workshops.js"></script>
+</body>
+</html>

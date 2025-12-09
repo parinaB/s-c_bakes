@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Self-Fun • S&C Bakes</title>
+  <link rel="stylesheet" href="styles/style.css" />
+
+  <link rel="stylesheet" href="styles/selffun.css" />
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <div id="navbar"></div>
+
+  <script>
+    fetch('navbar.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('navbar').innerHTML = data;
+      });
+  </script>
+
+  <!-- SELF-FUN PAGE CONTENT -->
+  <section class="products">
+    <div class="self-wrapper">
+      
+      <!-- LEFT IMAGE -->
+      <div class="self-left">
+        <img src="https://i.pinimg.com/736x/a1/4c/a2/a14ca2ae8f2681f7c18dffbe427ce1e9.jpg" alt="self fun">
+      </div>
+
+      <!-- RIGHT FORM -->
+      <div class="self-right">
+        <h2>Self-Fun Booking</h2>
+
+        <form id="selfForm">
+
+            <div class="self-group">
+            <label for="sname">Enter Name :</label>
+            <input id="sname" type="text" required>
+          </div>
+
+          <div class="self-group">
+            <label for="sdate">Select Date</label>
+            <input id="sdate" type="date" required>
+          </div>
+
+          <div class="self-group">
+            <label for="speople">Number of People</label>
+            <input id="speople" type="number" min="1" max="10" value="1" required>
+          </div>
+
+          <div class="self-group">
+            <label for="sflavour">Cake Flavour</label>
+            <select id="sflavour" required>
+              <option value="">-- choose flavour --</option>
+              <option>Chocolate Truffle</option>
+              <option>Red Velvet</option>
+              <option>Vanilla Cream</option>
+              <option>Butterscotch Crunch</option>
+            </select>
+          </div>
+
+          <div class="self-group">
+            <label for="ssize">Cake Size</label>
+            <select id="ssize" required>
+              <option value="0.5">1/2 KG</option>
+            </select>
+          </div>
+
+          <!-- Price Display -->
+          <div class="price-highlight">
+      <p>Price per person: <span id="pricePerPerson">₹699</span></p>
+     <h3>Total: <span id="totalPrice">₹699</span></h3>
+    </div>
+
+          <button type="submit" class="self-confirm">Confirm Booking</button>
+
+          <p id="smsg"></p>
+        </form>
+      </div>
+
+    </div>
+  </section>
+
+  <footer>
+    <h3>S&C Bakes</h3>
+    <p>Happy Baking!</p>
+  </footer>
+
+  <script src="selffun.js"></script>
+</body>
+</html>

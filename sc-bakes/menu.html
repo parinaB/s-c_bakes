@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sprinkles Menu</title>
+  <link rel="stylesheet" href="styles/style.css">
+  <link rel="stylesheet" href="styles/menu.css">
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <div id="navbar"></div>
+
+<script>
+  fetch('navbar.html')
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById('navbar').innerHTML = data;
+    });
+</script>
+
+  <!-- HERO MENU IMAGE -->
+  <section class="menu-hero">
+    <div class="overlay">
+      <h1>Our Menu</h1>
+      <p>Find your perfect cheat-day treat.</p>
+    </div>
+  </section>
+
+  <!-- MENU LIST -->
+  <section class="menu-section">
+    <h2>Freshly Baked Everyday</h2>
+    <div class="menu-list">
+
+      <!-- CARD EXAMPLES -->
+      <div class="menu-card">
+        <img src="https://i.pinimg.com/736x/37/25/7e/37257e98c719f38d88627329e842ac6c.jpg" alt="Sprinkles Cupcake">
+        <div class="card-info">
+          <h3>Sprinkles Cupcake (12 pcs)</h3>
+          <p>12 different sprinkles flavors</p>
+          <span class="price">₹995.89</span>
+          <button class="add-to-cart" data-name="Sprinkles Cupcake" data-price="995.89" data-image="https://i.pinimg.com/736x/37/25/7e/37257e98c719f38d88627329e842ac6c.jpg">Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="menu-card">
+        <img src="https://i.pinimg.com/736x/45/5a/18/455a180ed37d6cc37521f0bb6077d11f.jpg" alt="Coco Strawberry Cake">
+        <div class="card-info">
+          <h3>Coco Strawberry Cake (1 Kg)</h3>
+          <p>Rich milk chocolate + fresh strawberries</p>
+          <span class="price">₹750</span>
+          <button class="add-to-cart" data-name="Coco Strawberry Cake" data-price="750" data-image="https://i.pinimg.com/736x/45/5a/18/455a180ed37d6cc37521f0bb6077d11f.jpg">Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="menu-card">
+        <img src="https://i.pinimg.com/1200x/5b/0c/68/5b0c68b8a4a727834c4f289918932893.jpg" alt="Brownie">
+        <div class="card-info">
+          <h3>Brownie Cake</h3>
+          <p>Hazelnut And Chocolate Brownie Cake</p>
+          <span class="price">₹550</span>
+          <button class="add-to-cart" data-name="Brownie" data-price="550" data-image="https://i.pinimg.com/1200x/5b/0c/68/5b0c68b8a4a727834c4f289918932893.jpg">Add to Cart</button>
+        </div>
+      </div>
+
+       <div class="menu-card">
+        <img src="https://i.pinimg.com/736x/72/bb/51/72bb51b23cf78b03d532234af0e6e9ae.jpg" alt="WhiteCake">
+        <div class="card-info">
+          <h3>Vanilla White Chocolate CAKE (1kg)</h3>
+          <p>Sweet, Rich,Overwhelming</p>
+          <span class="price">₹750</span>
+          <button class="add-to-cart" data-name="WhiteCake" data-price="750" data-image="https://i.pinimg.com/736x/72/bb/51/72bb51b23cf78b03d532234af0e6e9ae.jpg">Add to Cart</button>
+        </div>
+      </div>
+
+       <div class="menu-card">
+        <img src="https://i.pinimg.com/1200x/59/61/f0/5961f0db53929167360208aebecf1aa0.jpg" alt="Bento">
+        <div class="card-info">
+          <h3>Bento Cakes</h3>
+          <p>Small Cookie Crumb Milk Chocolate</p>
+          <span class="price">₹250</span>
+          <button class="add-to-cart" data-name="Bento" data-price="250" data-image="https://i.pinimg.com/1200x/59/61/f0/5961f0db53929167360208aebecf1aa0.jpg">Add to Cart</button>
+        </div>
+      </div>
+
+       <div class="menu-card">
+        <img src="https://i.pinimg.com/1200x/54/c8/e4/54c8e4174d75177b8d54c721fd771a77.jpg" alt="OreoCinn">
+        <div class="card-info">
+          <h3>Oreo Cinnamon Roll</h3>
+          <p>Perfect Cinnamon Bite</p>
+          <span class="price">₹150</span>
+          <button class="add-to-cart" data-name="OreoCinn" data-price="150" data-image="https://i.pinimg.com/1200x/54/c8/e4/54c8e4174d75177b8d54c721fd771a77.jpg">Add to Cart</button>
+        </div>
+      </div>
+
+       <div class="menu-card">
+        <img src="https://i.pinimg.com/1200x/f4/b2/e2/f4b2e27462fb0abcd2be75e70e6f6da1.jpg" alt="Donuts">
+        <div class="card-info">
+          <h3>Donuts (6pcs)</h3>
+          <p>Chocolate,Hazelnut, Blueberry, Kinder, Biscoff & Oreo</p>
+          <span class="price">₹300</span>
+          <button class="add-to-cart" data-name="Donuts" data-price="300" data-image="https://i.pinimg.com/1200x/f4/b2/e2/f4b2e27462fb0abcd2be75e70e6f6da1.jpg">Add to Cart</button>
+        </div>
+      </div>
+
+       <div class="menu-card">
+        <img src="https://i.pinimg.com/736x/6c/ec/c4/6cecc4993354f3a6da13ce4a479177b9.jpg" alt="Slice">
+        <div class="card-info">
+          <h3>Matlida's Slice</h3>
+          <p>Heavenly Matlida's Chocolate Cake Slice</p>
+          <span class="price">₹200</span>
+          <button class="add-to-cart" data-name="Slice" data-price="200" data-image="https://i.pinimg.com/736x/6c/ec/c4/6cecc4993354f3a6da13ce4a479177b9.jpg">Add to Cart</button>
+        </div>
+      </div>
+
+       <div class="menu-card">
+        <img src="https://i.pinimg.com/736x/aa/4a/5a/aa4a5a960a204d58b88d5f6950495fdb.jpg" alt="Cupcakes">
+        <div class="card-info">
+          <h3>CupCake Treat (6pcs)</h3>
+          <p>Classic Choco-Vanilla Cupcakes</p>
+          <span class="price">₹300</span>
+          <button class="add-to-cart" data-name="Cupcakes" data-price="300" data-image="https://i.pinimg.com/736x/aa/4a/5a/aa4a5a960a204d58b88d5f6950495fdb.jpg">Add to Cart</button>
+        </div>
+      </div>
+
+       <div class="menu-card">
+        <img src="https://i.pinimg.com/736x/4d/32/e8/4d32e844e036fa7af5cf349c11644720.jpg" alt="Pop">
+        <div class="card-info">
+          <h3>Cake Pops (2pcs)</h3>
+          <p>Red Velvet & White Chocolate </p>
+          <span class="price">₹120</span>
+          <button class="add-to-cart" data-name="Tiramisu" data-price="180" data-image="https://i.pinimg.com/736x/4d/32/e8/4d32e844e036fa7af5cf349c11644720.jpg">Add to Cart</button>
+        </div>
+      </div>
+
+       <div class="menu-card">
+        <img src="https://i.pinimg.com/1200x/43/95/85/439585479669ad7b4cf95fb1409d7891.jpg" alt="Jars">
+        <div class="card-info">
+          <h3>Oreo Jar</h3>
+          <p>Creamy Orea-Hazelnut Moose</p>
+          <span class="price">₹180</span>
+          <button class="add-to-cart" data-name="Jar" data-price="180" data-image="https://i.pinimg.com/1200x/43/95/85/439585479669ad7b4cf95fb1409d7891.jpg">Add to Cart</button>
+        </div>
+      </div>
+
+
+       <div class="menu-card">
+        <img src="https://i.pinimg.com/736x/a7/d7/f1/a7d7f137e6ab29227494eb8584182b28.jpg" alt="SMS">
+        <div class="card-info">
+          <h3>Christmas Sandwich (3pcs)</h3>
+          <p>Chocolate, Marshmellows & Strawberries</p>
+          <span class="price">₹230</span>
+          <button class="add-to-cart" data-name="SMS" data-price="230" data-image="https://i.pinimg.com/736x/a7/d7/f1/a7d7f137e6ab29227494eb8584182b28.jpg">Add to Cart</button>
+        </div>
+      </div>
+
+       <div class="menu-card">
+        <img src="https://i.pinimg.com/736x/04/9f/af/049faff354c6e9912d06138372349c8f.jpg" alt="Cake2">
+        <div class="card-info">
+          <h3>Ferror Cake (1kg)</h3>
+          <p>Rocher & Hazelnut </p>
+          <span class="price">₹800</span>
+          <button class="add-to-cart" data-name="Cake2" data-price="800" data-image="https://i.pinimg.com/736x/04/9f/af/049faff354c6e9912d06138372349c8f.jpg">Add to Cart</button>
+        </div>
+      </div>
+
+       <div class="menu-card">
+        <img src="https://i.pinimg.com/1200x/4d/cf/de/4dcfde0b9f976d5ee25f3b40887dddcd.jpg" alt="Kunafa">
+        <div class="card-info">
+          <h3>Dubai Pastry</h3>
+          <p>Kunafa & Chocolate</p>
+          <span class="price">₹280</span>
+          <button class="add-to-cart" data-name="Kunafa" data-price="280" data-image="https://i.pinimg.com/1200x/4d/cf/de/4dcfde0b9f976d5ee25f3b40887dddcd.jpg">Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="menu-card">
+        <img src="https://i.pinimg.com/736x/4d/ac/ec/4dacec32ae146303e959fc8fbc33db5a.jpg" alt="CheeseCake">
+        <div class="card-info">
+          <h3>Biscoff CheeseCake</h3>
+          <p>Creamy & Rick</p>
+          <span class="price">₹200</span>
+          <button class="add-to-cart" data-name="CheeseCake" data-price="200" data-image="https://i.pinimg.com/736x/4d/ac/ec/4dacec32ae146303e959fc8fbc33db5a.jpg">Add to Cart</button>
+        </div>
+      </div>
+
+      
+      
+    </div>
+  </section>
+
+  <div id="cart-footer" class="cart-footer hidden">
+  <div class="cart-info">
+    <span>Total: ₹<span id="cart-total">0</span></span>
+  </div>
+  <a href="cart.html" class="view-cart-btn">View Cart</a>
+
+</div>
+
+<script src="cart-footer.js"></script>
+</body>
+</html>

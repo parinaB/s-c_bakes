@@ -1,0 +1,86 @@
+/* Body same background as main site */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #fff3f3; /* same as menu page */
+  margin: 0;
+  padding: 0;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ff6b6b;
+  color: white;
+  padding: 10px 20px;
+}
+
+.navbar .nav-links li {
+  display: inline-block;
+  margin-left: 15px;
+}
+
+.cart-bill-container {
+  max-width: 700px;
+  margin: 80px auto 50px auto;
+  background-color: white;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.cart-bill-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+#cart-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+#cart-table th, #cart-table td {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: center;
+}
+
+#cart-table img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+}
+
+.cart-bill-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.cart-bill-buttons button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+#back-btn {
+  background-color: #ccc;
+  color: #333;
+}
+
+#back-btn:hover {
+  background-color: #bbb;
+}
+
+#checkout-btn {
+  background-color: #ff6b6b;
+  color: white;
+}
+
+#checkout-btn:hover {
+  background-color: #ff4c4c;
+}
+
