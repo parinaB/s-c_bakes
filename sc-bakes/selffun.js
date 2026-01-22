@@ -1,67 +1,29 @@
 const form = document.getElementById("selfForm");
 const peopleInput = document.getElementById("speople");
 const totalPriceEl = document.getElementById("totalPrice");
-const pricePerPersonEl = document.getElementById("pricePerPerson");
-const msg = document.getElementById("smsg");
-
 const pricePerPerson = 699;
 
-// Update total price dynamically
 peopleInput.addEventListener("input", () => {
-  const total = pricePerPerson * peopleInput.value;
-  totalPriceEl.textContent = `₹${total}`;
+  totalPriceEl.textContent = `₹${pricePerPerson * (peopleInput.value || 1)}`;
 });
 
-// Form submission
-form.addEventListener("submit", async (e) => {
+form.addEventListener("submit",(e)=>{
   e.preventDefault();
 
-  const name = document.getElementById("sname").value;
-  const date = document.getElementById("sdate").value;
-  const people = parseInt(peopleInput.value);
-  const flavour = document.getElementById("sflavour").value;
-  const size = document.getElementById("ssize").value;
-  const slot = "Self-Fun Session";
+  const name=document.getElementById("sname").value;
+  const date=document.getElementById("sdate").value;
+  const people=parseInt(peopleInput.value);
+  const flavour=document.getElementById("sflavour").value;
+  const size=document.getElementById("ssize").value;
+  const total=pricePerPerson*people;
 
-  if (!name || !date || !people || !flavour || !size) {
-    alert("Please fill all fields");
-    return;
-  }
+  if(!name||!date||!people||!flavour||!size) return alert("Please fill all fields");
 
-  const total = pricePerPerson * people;
+  const selfFunBookings = JSON.parse(localStorage.getItem('selfFunBookings')) || [];
+  selfFunBookings.push({ name,date,people,flavour,size,total,time:new Date().toLocaleString() });
+  localStorage.setItem('selfFunBookings',JSON.stringify(selfFunBookings));
 
-  try {
-    // Send booking data to backend
-    const response = await fetch('http://localhost:5000/save-self-fun', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        name: name,
-        date: date,
-        people: people,
-        flavour: flavour,
-        size: size,
-        total: total
-      })
-    });
-
-    const result = await response.json();
-    
-    if (response.ok) {
-      // Show confirmation popup
-      alert(`Booking confirmed!\nName: ${name}\nDate: ${date}\nPeople: ${people}\nSession: ${slot}\nFlavour: ${flavour}\nSize: ${size}\nTotal: ₹${total}`);
-      
-      // Reset form
-      form.reset();
-      totalPriceEl.textContent = `₹${pricePerPerson}`;
-      msg.textContent = ""; // clear any previous messages
-    } else {
-      alert('Error saving booking: ' + result.message);
-    }
-  } catch (error) {
-    console.error('Booking error:', error);
-    alert('Error connecting to server. Please try again.');
-  }
+  alert(`Booking confirmed!\nName:${name}\nDate:${date}\nPeople:${people}\nFlavour:${flavour}\nSize:${size}\nTotal:₹${total}`);
+  form.reset();
+  totalPriceEl.textContent=`₹${pricePerPerson}`;
 });

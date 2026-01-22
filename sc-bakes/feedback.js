@@ -6,72 +6,38 @@ document.addEventListener('DOMContentLoaded', () => {
   const msgEl = document.getElementById('feedbackMsg');
   let selectedRating = 0;
 
-  // Star rating functionality
   stars.forEach(star => {
     star.addEventListener('click', () => {
       const rating = parseInt(star.dataset.rating);
       selectedRating = rating;
       ratingInput.value = rating;
-      
-      // Update star display
+
       stars.forEach((s, index) => {
-        if (index < rating) {
-          s.classList.add('active');
-          s.textContent = '★';
-        } else {
-          s.classList.remove('active');
-          s.textContent = '☆';
-        }
+        s.classList.toggle('active', index < rating);
+        s.textContent = index < rating ? '★' : '☆';
       });
 
-      // Update rating text
-      const ratingLabels = {
-        1: 'Poor',
-        2: 'Fair',
-        3: 'Good',
-        4: 'Very Good',
-        5: 'Excellent'
-      };
-      ratingText.textContent = ratingLabels[rating] || 'Click to rate';
+      const labels = { 1:'Poor',2:'Fair',3:'Good',4:'Very Good',5:'Excellent' };
+      ratingText.textContent = labels[rating] || 'Click to rate';
     });
 
-    // Hover effect
     star.addEventListener('mouseenter', () => {
       const rating = parseInt(star.dataset.rating);
-      stars.forEach((s, index) => {
-        if (index < rating) {
-          s.textContent = '★';
-          s.style.color = '#ffd700';
-        } else {
-          s.textContent = '☆';
-          s.style.color = '#ddd';
-        }
+      stars.forEach((s,index) => {
+        s.textContent = index<rating?'★':'☆';
+        s.style.color = index<rating?'#ffd700':'#ddd';
       });
     });
   });
 
-  // Reset stars on mouse leave (if no rating selected)
   document.querySelector('.star-rating').addEventListener('mouseleave', () => {
-    if (selectedRating === 0) {
-      stars.forEach(s => {
-        s.textContent = '☆';
-        s.style.color = '#ddd';
-      });
-    } else {
-      stars.forEach((s, index) => {
-        if (index < selectedRating) {
-          s.textContent = '★';
-          s.style.color = '#ffd700';
-        } else {
-          s.textContent = '☆';
-          s.style.color = '#ddd';
-        }
-      });
-    }
+    stars.forEach((s,index) => {
+      s.textContent = index<selectedRating?'★':'☆';
+      s.style.color = index<selectedRating?'#ffd700':'#ddd';
+    });
   });
 
-  // Form submission
-  form.addEventListener('submit', async (e) => {
+  form.addEventListener('submit', (e) => {
     e.preventDefault();
 
     const name = document.getElementById('fname').value.trim();
@@ -79,59 +45,24 @@ document.addEventListener('DOMContentLoaded', () => {
     const rating = ratingInput.value;
     const message = document.getElementById('fmessage').value.trim();
 
-    if (!name || !date || !rating) {
-      msgEl.textContent = 'Please fill all required fields!';
-      msgEl.className = 'error';
+    if(!name||!date||!rating){
+      msgEl.textContent='Please fill all required fields!';
+      msgEl.className='error';
       return;
     }
 
-    try {
-      // Send feedback to backend
-      const response = await fetch('http://localhost:5000/save-feedback', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          name: name,
-          date: date,
-          rating: rating,
-          message: message || 'No additional comments'
-        })
-      });
+    const feedbacks = JSON.parse(localStorage.getItem('feedbacks')) || [];
+    feedbacks.push({ name, date, rating, message, time: new Date().toLocaleString() });
+    localStorage.setItem('feedbacks', JSON.stringify(feedbacks));
 
-      const result = await response.json();
-      
-      if (response.ok) {
-        msgEl.textContent = 'Thank you for your feedback!';
-        msgEl.className = 'success';
-        
-        // Reset form
-        form.reset();
-        selectedRating = 0;
-        ratingInput.value = '';
-        stars.forEach(s => {
-          s.classList.remove('active');
-          s.textContent = '☆';
-          s.style.color = '#ddd';
-        });
-        ratingText.textContent = 'Click to rate';
-        
-        // Clear message after 3 seconds
-        setTimeout(() => {
-          msgEl.textContent = '';
-          msgEl.className = '';
-        }, 3000);
-      } else {
-        msgEl.textContent = 'Error submitting feedback: ' + (result.message || 'Unknown error');
-        msgEl.className = 'error';
-      }
-    } catch (error) {
-      console.error('Feedback error:', error);
-      msgEl.textContent = 'Error connecting to server. Please try again.';
-      msgEl.className = 'error';
-    }
+    msgEl.textContent='Thank you for your feedback!';
+    msgEl.className='success';
+
+    form.reset();
+    selectedRating=0;
+    ratingInput.value='';
+    stars.forEach(s => { s.classList.remove('active'); s.textContent='☆'; s.style.color='#ddd'; });
+    ratingText.textContent='Click to rate';
+    setTimeout(()=>{ msgEl.textContent=''; msgEl.className=''; },3000);
   });
 });
-
-

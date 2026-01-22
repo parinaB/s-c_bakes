@@ -1,70 +1,30 @@
-// Constants
-const pricePerPerson = 699;
-
-// Get form elements
 const wform = document.getElementById("workshopForm");
 const wpeople = document.getElementById("wpeople");
 const totalPriceEl = document.getElementById("totalPrice");
 const wmsg = document.getElementById("wmsg");
 const wdate = document.getElementById("wdate");
 const wslot = document.getElementById("wslot");
+const pricePerPerson = 699;
 
-// Function to update total price
-function updateTotalPrice() {
-  const num = parseInt(wpeople.value) || 1;
-  totalPriceEl.textContent = `₹${pricePerPerson * num}`;
-}
-
-// Update total price on number of people change
-wpeople.addEventListener("input", updateTotalPrice);
-
-// Initial total price
+function updateTotalPrice(){ totalPriceEl.textContent=`₹${pricePerPerson*(parseInt(wpeople.value)||1)}`; }
+wpeople.addEventListener("input",updateTotalPrice);
 updateTotalPrice();
 
-// Handle form submission
-wform.addEventListener("submit", async function(e) {
-  e.preventDefault(); // prevent page reload
+wform.addEventListener("submit",(e)=>{
+  e.preventDefault();
+  const name=document.getElementById("wname").value;
+  const people=parseInt(wpeople.value);
+  const date=wdate.value;
+  const slot=wslot.value;
+  const total=pricePerPerson*people;
 
-  const name = document.getElementById("wname").value;
-  const people = parseInt(wpeople.value);
-  const date = wdate.value;
-  const slot = wslot.value;
+  if(!name||!people||!date||!slot){ wmsg.textContent="Please fill all fields!"; return; }
 
-  if (!name || !date || !slot || !people) {
-    wmsg.textContent = "Please fill all fields!";
-    return;
-  }
+  const workshopBookings = JSON.parse(localStorage.getItem('workshopBookings')) || [];
+  workshopBookings.push({ name,date,people,slot,total,time:new Date().toLocaleString() });
+  localStorage.setItem('workshopBookings',JSON.stringify(workshopBookings));
 
-  const total = pricePerPerson * people;
-  
-  try {
-    // Send booking data to backend
-    const response = await fetch('http://localhost:5000/save-workshop', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        name: name,
-        date: date,
-        people: people,
-        slot: slot,
-        total: total
-      })
-    });
-
-    const result = await response.json();
-    
-    if (response.ok) {
-      wmsg.textContent = `Booking confirmed for ${name}! See you on ${date} at ${slot}. Total: ₹${total}`;
-      // Reset form after booking
-      wform.reset();
-      updateTotalPrice();
-    } else {
-      wmsg.textContent = 'Error saving booking: ' + result.message;
-    }
-  } catch (error) {
-    console.error('Booking error:', error);
-    wmsg.textContent = 'Error connecting to server. Please try again.';
-  }
+  wmsg.textContent=`Booking confirmed for ${name}! See you on ${date} at ${slot}. Total: ₹${total}`;
+  wform.reset();
+  updateTotalPrice();
 });

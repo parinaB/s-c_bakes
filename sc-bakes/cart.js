@@ -8,7 +8,6 @@ document.addEventListener('DOMContentLoaded', () => {
   let cart = JSON.parse(localStorage.getItem('cart')) || [];
   let total = 0;
 
-  // Populate cart table
   function populateCart() {
     cartTable.innerHTML = '';
     total = 0;
@@ -36,60 +35,21 @@ document.addEventListener('DOMContentLoaded', () => {
     totalSumEl.textContent = `₹${total.toFixed(2)}`;
   }
 
-  // Back button
-  backBtn.addEventListener('click', () => {
-    window.history.back();
+  backBtn.addEventListener('click', () => window.history.back());
+
+  checkoutBtn.addEventListener('click', () => {
+    if (cart.length === 0) return alert('Your cart is empty!');
+
+    // Save to localStorage orders
+    const orders = JSON.parse(localStorage.getItem('orders')) || [];
+    orders.push({ type: 'checkout', items: cart, total: total, date: new Date().toLocaleString() });
+    localStorage.setItem('orders', JSON.stringify(orders));
+
+    alert('Checkout successful! Your order has been placed.');
+    cart = [];
+    localStorage.removeItem('cart');
+    populateCart();
   });
 
-  // Checkout button
-  checkoutBtn.addEventListener('click', async () => {
-    if (cart.length === 0) {
-      alert('Your cart is empty!');
-      return;
-    }
-
-    try {
-      // Send cart data to backend
-      const response = await fetch('http://localhost:5000/save-checkout', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          type: 'checkout',
-          items: cart,
-          total: total
-        })
-      });
-
-      let result;
-      try {
-        result = await response.json();
-      } catch (jsonError) {
-        // If response is not JSON, get text instead
-        const text = await response.text();
-        throw new Error(`Server error: ${text || response.statusText}`);
-      }
-      
-      if (response.ok) {
-        alert('Checkout successful! Your order has been placed.');
-        // Clear cart
-        localStorage.removeItem('cart');
-        cart = [];
-        populateCart();
-      } else {
-        alert('Error during checkout: ' + (result.message || result.error || 'Unknown error'));
-      }
-    } catch (error) {
-      console.error('Checkout error:', error);
-      if (error.message.includes('Failed to fetch') || error.message.includes('NetworkError')) {
-        alert('Cannot connect to server. Please make sure the backend server is running on port 5000.');
-      } else {
-        alert('Error during checkout: ' + error.message);
-      }
-    }
-  });
-
-  // Initial population
   populateCart();
 });
